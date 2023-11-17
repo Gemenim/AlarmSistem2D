@@ -13,6 +13,12 @@ public class Annunciator : MonoBehaviour
     private float _maxVolume = 1.0f;
     private bool _isCorutinJob = false;
 
+    public void StartChangeVolume()
+    {
+        _isCorutinJob = true;
+        StartCoroutine(ChangeVolume());
+    }
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -20,21 +26,15 @@ public class Annunciator : MonoBehaviour
         _audioSource.volume = 0;
     }
 
-    private void Update()
-    {
-        if (_intruderLocator.IsIntruder && _isCorutinJob == false)
-        {
-            _isCorutinJob = true;
-            StartCoroutine(ChangeVolume());
-        }
-    }
-
     private IEnumerator ChangeVolume()
     {
         while (_isCorutinJob)
         {
             if (_intruderLocator.IsIntruder)
+            {
                 _audioSource.volume += _maxVolume * Time.deltaTime * _rate—hange;
+                Debug.Log("OK");
+            }
             else
             {
                 _audioSource.volume -= _maxVolume * _rate—hange * Time.deltaTime;
