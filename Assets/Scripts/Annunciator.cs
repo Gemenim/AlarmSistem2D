@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(IntruderLocator))]
 public class Annunciator : MonoBehaviour
 {
-    [SerializeField] private float _rate—hange;
+    [SerializeField] private float _rate√ëhange;
 
     private AudioSource _audioSource;
     private IntruderLocator _intruderLocator;
@@ -31,13 +31,10 @@ public class Annunciator : MonoBehaviour
         while (_isCorutinJob)
         {
             if (_intruderLocator.IsIntruder)
-            {
-                _audioSource.volume += _maxVolume * Time.deltaTime * _rate—hange;
-                Debug.Log("OK");
-            }
+                _audioSource.volume += _maxVolume * Time.deltaTime * _rate√ëhange;
             else
             {
-                _audioSource.volume -= _maxVolume * _rate—hange * Time.deltaTime;
+                _audioSource.volume -= _maxVolume * _rate√ëhange * Time.deltaTime;
 
                 if (_audioSource.volume == 0)
                     _isCorutinJob = false;
